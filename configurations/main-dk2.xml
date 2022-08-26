@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<blendervr>
+  <!-- Documentation can be found on BlenderVR manual: http://blender-vr-manual.readthedocs.org/components/configuration-file.html -->
+
+  <starter blender='#### path to blender executable ####'>
+    <config name='Console'>console</config>
+    <config name='DK2 Debug'>oculus dk2 debug</config>
+    <config name='DK2 Full'>oculus dk2 full</config>
+  </starter>
+
+  <users>
+    <!-- if not defined, default eye_separation is 0.06 (meter) -->
+    <behavior eye_separation='0.06'>
+      <!-- if not defined, default position is 0.0, 0.0, 0.0 -->
+      <default_position>0.0, 0.0, 0.0</default_position>
+    </behavior>
+    <user name="user A"/>
+    <!-- <user name="user B"/> -->
+  </users>
+
+  <computers>
+
+    <system>
+      <!-- <blenderplayer executable='path to blenderplayer executable'/> -->
+    </system>
+    <computer name='Any' hostname='*'>
+    </computer>
+
+  </computers>
+
+  <screens>
+
+    <screen name="console" computer="Any">
+      <display options="-w 720 450 720 450">
+        <environment>DISPLAY=:0</environment>
+        <graphic_buffer buffer="mono" user='user A' eye="middle"/>
+      </display>
+      <wall>
+        <corner name="topRightCorner">2.16, 1.35, -1.0</corner>
+        <corner name="topLeftCorner">-2.16, 1.35, -1.0</corner>
+        <corner name="bottomRightCorner">2.16, -1.35, -1.0</corner>
+      </wall>
+    </screen>
+
+    <screen name="oculus dk2 debug" computer="Any">
+        <display options="-w 720 450 720 450 -s sidebyside">
+        <environment>DISPLAY=:0.0</environment>
+        <graphic_buffer buffer="left" user='user A' eye="left"/>
+        <graphic_buffer buffer="right" user='user A' eye="right"/>
+      </display>
+      <hmd model="oculus_dk2">
+        <left>
+          <corner name="topRightCorner">1.0, 1.0, -1.0</corner>
+          <corner name="topLeftCorner">-1.0, 1.0, -1.0</corner>
+          <corner name="bottomRightCorner">1.0, -1.0, -1.0</corner>
+        </left>
+        <right>
+          <corner name="topRightCorner">1.0, 1.0, -1.0</corner>
+          <corner name="topLeftCorner">-1.0, 1.0, -1.0</corner>
+          <corner name="bottomRightCorner">1.0, -1.0, -1.0</corner>
+        </right>
+      </hmd>
+    </screen>
+
+    <screen name="oculus dk2 full" computer="Any">
+      <display options="-f -s sidebyside">
+        <environment>DISPLAY=:0.0</environment>
+        <graphic_buffer buffer="left" user='user A' eye="left"/>
+        <graphic_buffer buffer="right" user='user A' eye="right"/>
+      </display>
+      <hmd model="oculus_dk2">
+        <left>
+          <corner name="topRightCorner">1.0, 1.0, -1.0</corner>
+          <corner name="topLeftCorner">-1.0, 1.0, -1.0</corner>
+          <corner name="bottomRightCorner">1.0, -1.0, -1.0</corner>
+        </left>
+        <right>
+          <corner name="topRightCorner">1.0, 1.0, -1.0</corner>
+          <corner name="topLeftCorner">-1.0, 1.0, -1.0</corner>
+          <corner name="bottomRightCorner">1.0, -1.0, -1.0</corner>
+        </right>
+      </hmd>
+    </screen>
+
+  </screens>
+
+  <plugins>
+
+    <oculus_dk2>
+      <user processor_method="user_position" viewer='user A' computer='Any' />
+    </oculus_dk2>
+
+  </plugins>
+
+</blendervr>
